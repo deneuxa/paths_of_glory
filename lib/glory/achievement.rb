@@ -76,6 +76,14 @@ class Achievement < ActiveRecord::Base
       user.achievements.kind_of(self).current
     end
     
+    def current_level(user)
+      if current_achievement = current_achievement(user)
+        current_achievement.level
+      else
+        0
+      end
+    end
+    
     def next_level(user)
       current_level(user) + 1
     end
